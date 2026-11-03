@@ -41,6 +41,10 @@ button,input,textarea{font:inherit;color:inherit}button{transition:transform .16
 </style></head><body><div id="root"></div>
 <script type="text/babel">
 const {useState,useEffect,useRef,useCallback}=React;
+// >>> EDIT THESE TWO: your real phone number and office address <<<
+const PHONE='+91 00000 00000';
+const ADDRESS=['ANMIS Legal Consultancy','Your street address','City, State, PIN code'];
+const TEL='tel:'+PHONE.replace(/[^+\d]/g,'');
 const P_='https://www.pexels.com/download/video/';
 // Swap any of these for a local file (e.g. 'media/hero.mp4') if the Pexels link ever refuses to play.
 const MEDIA={hero:P_+'6101151/',film:P_+'4475743/',fiber:P_+'6854190/',atmos:P_+'5637923/',object:P_+'8061614/'};
@@ -65,7 +69,7 @@ function FilmFrame({src,poster,hero}){const red=useReduced();const ref=useRef(nu
   {st==='error'&&!pf&&<p role="status" className="absolute bottom-3 left-4 z-[3] text-xs muted">Film unavailable — showing still study.</p>}
   {st==='error'&&pf&&<div className="absolute inset-0 z-[3] grid place-items-center text-sm muted">Media unavailable</div>}</div>}
 function Dialog({open,onClose,title,children}){const box=useRef(null);
- useEffect(()=>{if(!open)return;const prev=document.activeElement;const q=()=>[...box.current.querySelectorAll('button,input,textarea')];setTimeout(()=>q()[0]&&q()[0].focus(),30);
+ useEffect(()=>{if(!open)return;const prev=document.activeElement;const q=()=>[...box.current.querySelectorAll('button,input,textarea,a[href]')];setTimeout(()=>q()[0]&&q()[0].focus(),30);
   const k=e=>{if(e.key==='Escape'){onClose();return}if(e.key!=='Tab')return;const f=q(),a=f[0],z=f[f.length-1];
    if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}};
   document.addEventListener('keydown',k);return()=>{document.removeEventListener('keydown',k);prev&&prev.focus&&prev.focus()}},[open,onClose]);
@@ -73,28 +77,22 @@ function Dialog({open,onClose,title,children}){const box=useRef(null);
  return <div className="fixed inset-0 z-[70] grid place-items-center p-4 bg-black/70 backdrop-blur-md" onMouseDown={e=>{if(e.target===e.currentTarget)onClose()}}>
   <div ref={box} role="dialog" aria-modal="true" aria-label={title} className="liquid-glass rounded-3xl w-full max-w-lg max-h-[88vh] overflow-auto p-6 md:p-8">
    <div className="flex items-start justify-between gap-4 mb-4"><h2 className="font-display text-2xl md:text-3xl leading-tight">{title}</h2><button onClick={onClose} aria-label="Close dialog" className="liquid-glass rounded-full w-10 h-10 grid place-items-center shrink-0"><Ic d={IC.x} s={16}/></button></div>{children}</div></div>}
-function Inquiry(){const[v,setV]=useState({n:'',e:'',m:''});const[msg,setMsg]=useState('');const[err,setErr]=useState(false);
- const sub=ev=>{ev.preventDefault();const ok=v.n.trim()&&/^\S+@\S+\.\S+$/.test(v.e)&&v.m.trim();setErr(!ok);setMsg(ok?'Demo inquiry staged locally — no message was sent.':'Please complete every field with a valid email.')};
- const f=(k,l,t='text')=><label className="block mb-3 text-sm muted">{l}{k==='m'?<textarea rows={4} className="field mt-1" value={v[k]} onChange={x=>setV({...v,[k]:x.target.value})}/>:<input type={t} className="field mt-1" value={v[k]} onChange={x=>setV({...v,[k]:x.target.value})}/>}</label>;
- return <form onSubmit={sub} noValidate><p className="muted mb-4">This is a local demo form. Your note stays in this browser and is not sent. Please do not enter confidential details.</p>{f('n','Name')}{f('e','Email','email')}{f('m','A few lines about your matter')}
- <button className="liquid-glass rounded-full px-6 py-3 text-sm font-medium">Save demo inquiry</button><p role="status" aria-live="polite" className={'mt-3 text-sm '+(err?'clay':'text-[#8f9b82]')}>{msg}</p></form>}
 const LINKS=[['About','approach'],['Principles','philosophy'],['Services','services'],['Contact','contact']];
 const INDEX=['Legal consultation','Corporate and commercial law','Contract drafting and review','Documentation','Dispute resolution and regulatory compliance','Legal representation'];
 const P=t=><p className="muted">{t}</p>;
-const DLG={inquiry:['Tell us about your legal matter.',<Inquiry/>],index:['Practice areas / what we do',<ol className="list-decimal pl-5 space-y-2 muted">{INDEX.map(q=><li key={q}>{q}</li>)}</ol>],
- journal:['Insights / note 01',P('Good legal advice starts with understanding the full picture. This demo page is where short, plain-language insights would appear.')],archive:['Our channels are coming soon.',P('Nothing external is connected in this demo.')],
+const DLG={index:['Practice areas / what we do',<ol className="list-decimal pl-5 space-y-2 muted">{INDEX.map(q=><li key={q}>{q}</li>)}</ol>],
+ address:['Our address',<div><address className="not-italic muted space-y-1">{ADDRESS.map(l=><div key={l}>{l}</div>)}</address><a href={TEL} className="inline-block mt-5 clay">{PHONE}</a></div>],archive:['Our channels are coming soon.',P('Nothing external is connected in this demo.')],
  notes:['How we work / listen, advise, act',P('We understand the matter, advise on your options, then act through documentation, negotiation, or representation. This demo has no booking connected.')],
  mapping:['Consultation & compliance',P('Demo summary: we advise on legal questions, regulatory compliance, and corporate and commercial matters, with clear next steps. This is general information, not legal advice.')],
  editions:['Contracts & representation',P('Demo summary: we draft and review contracts, prepare documentation, support dispute resolution, and arrange representation through qualified legal professionals. This is general information, not legal advice.')]};
 const CARDS=[{k:'mapping',v:'atmos',tag:'Advisory',t:'Consultation & compliance',d:'Legal consultation, regulatory compliance, and corporate and commercial advice to help you act with confidence.'},{k:'editions',v:'object',tag:'Documents & disputes',t:'Contracts & representation',d:'Contract drafting and review, documentation, dispute resolution, and representation through qualified legal professionals.'}];
 function App(){
- const red=useReduced();const[dlg,setDlg]=useState(null);const[menu,setMenu]=useState(false);const[mail,setMail]=useState('');const[ms,setMs]=useState('');const burger=useRef(null);
+ const red=useReduced();const[dlg,setDlg]=useState(null);const[menu,setMenu]=useState(false);const burger=useRef(null);
  const open=setDlg;const close=useCallback(()=>setDlg(null),[]);const closeMenu=useCallback(()=>{setMenu(false);burger.current&&burger.current.focus()},[]);
  useEffect(()=>{document.body.classList.toggle('menu-open',menu);return()=>document.body.classList.remove('menu-open')},[menu]);
  useEffect(()=>{if(!menu)return;const k=e=>e.key==='Escape'&&closeMenu();const r=()=>innerWidth>900&&closeMenu();addEventListener('keydown',k);addEventListener('resize',r);return()=>{removeEventListener('keydown',k);removeEventListener('resize',r)}},[menu,closeMenu]);
- const go=id=>{setMenu(false);if(id==='contact'){open('inquiry');return}document.getElementById(id).scrollIntoView({behavior:red?'auto':'smooth'})};
+ const go=id=>{setMenu(false);if(id==='contact'){location.href=TEL;return}document.getElementById(id).scrollIntoView({behavior:red?'auto':'smooth'})};
  const H=({d,children,className=''})=><div className={'hs '+className} style={{animationDelay:d+'ms'}}>{children}</div>;
- const sendMail=e=>{e.preventDefault();setMs(/^\S+@\S+\.\S+$/.test(mail)?'Demo signup staged locally — nothing was subscribed or sent.':'Please enter a valid email address.')};
  const t=dlg&&DLG[dlg];
  return <main>
  <section id="top" className="relative flex flex-col min-h-screen min-h-[100svh] overflow-hidden">
@@ -104,21 +102,21 @@ function App(){
     <div className="flex items-center gap-3 min-w-0"><H d={0}><Logo/></H><H d={70} className="min-w-0"><span className="wordmark block">ANMIS Legal</span></H></div>
     <nav aria-label="Primary" className="hidden min-[901px]:flex gap-8">{LINKS.map(([l,id],i)=><H key={id} d={140+i*70}><button onClick={()=>go(id)} className="text-xs uppercase tracking-[.12em] font-medium muted hover:text-[#f2f0e9] bg-transparent border-0">{l}</button></H>)}</nav>
     <H d={420} className="flex items-center gap-4 shrink-0">
-     <button onClick={()=>open('journal')} className="hidden min-[901px]:inline text-xs uppercase tracking-[.12em] muted hover:text-[#f2f0e9] bg-transparent border-0">Insights</button>
-     <button onClick={()=>open('inquiry')} className="liquid-glass rounded-full px-5 py-2 text-xs font-medium hidden min-[641px]:inline-flex whitespace-nowrap">Request a consultation</button>
+     <button onClick={()=>open('address')} className="hidden min-[901px]:inline text-xs uppercase tracking-[.12em] muted hover:text-[#f2f0e9] bg-transparent border-0">Address</button>
+     <a href={TEL} className="liquid-glass rounded-full px-5 py-2 text-xs font-medium hidden min-[641px]:inline-flex whitespace-nowrap">Request a consultation</a>
      <button ref={burger} aria-label={menu?'Close menu':'Open menu'} aria-expanded={menu} aria-controls="menu" onClick={()=>menu?closeMenu():setMenu(true)} className="min-[901px]:hidden w-11 h-11 grid place-items-center bg-transparent border-0">
       {menu?<Ic d={IC.x} s={22}/>:<span className="flex flex-col items-end gap-[6px]"><span className="block h-px w-[18px] bg-[#f2f0e9]"/><span className="block h-px w-3 bg-[#f2f0e9]"/></span>}</button></H></div></header>
   <div id="menu" className={'menu flex flex-col justify-center px-8 '+(menu?'is-open':'')} aria-hidden={!menu} inert={menu?undefined:''}>
    {LINKS.map(([l,id],i)=><div className="menu__row" key={id}><button className="menu__link" style={{transitionDelay:menu?(.12+i*.06)+'s':'0s'}} tabIndex={menu?0:-1} onClick={()=>go(id)}>{l}</button></div>)}
-   <button className="menu__cta liquid-glass rounded-full px-6 py-3 mt-8 self-start" tabIndex={menu?0:-1} onClick={()=>{setMenu(false);open('inquiry')}}>Request a consultation</button></div>
+   <div className="menu__row"><button className="menu__link" style={{transitionDelay:menu?'.36s':'0s'}} tabIndex={menu?0:-1} onClick={()=>{setMenu(false);open('address')}}>Address</button></div>
+   <a href={TEL} className="menu__cta liquid-glass rounded-full px-6 py-3 mt-8 self-start items-center" tabIndex={menu?0:-1} onClick={()=>setMenu(false)}>Request a consultation</a></div>
   <div className="hero-stage relative z-10 flex flex-1 flex-col items-center justify-center text-center w-full max-w-full px-5 sm:px-6 py-10 pb-24 gap-5">
    <H d={560}><span className="liquid-glass rounded-3xl sm:rounded-full px-4 py-2 inline-flex items-center justify-center gap-2 text-[10px] sm:text-xs leading-snug uppercase tracking-[.1em] sm:tracking-[.12em] max-w-full text-center"><span className="w-1.5 h-1.5 bg-[#bf8d6f] shrink-0"/>Legal advisory · Individuals · Businesses</span></H>
    <H d={700}><h1 className="hero-h">Clear counsel for<br className="hidden min-[900px]:block"/> <em className="clay font-normal">complex matters.</em></h1></H>
    <H d={840}><p className="max-w-[620px] text-sm md:text-[17px] muted">ANMIS Legal Consultancy provides comprehensive, reliable, and client-centric legal solutions for individuals, businesses, and organisations.</p></H>
-   <H d={980} className="w-full max-w-xl"><form onSubmit={sendMail} noValidate className="liquid-glass rounded-full flex items-center pl-6 pr-2 py-2"><input aria-label="Email for legal updates" placeholder="Email for legal updates" value={mail} onChange={e=>setMail(e.target.value)} className="flex-1 min-w-0 bg-transparent outline-none text-sm"/><button aria-label="Submit email" className="w-10 h-10 rounded-full bg-white text-black grid place-items-center shrink-0"><Ic d={IC.arrow} s={16}/></button></form><p role="status" aria-live="polite" className="text-xs mt-2 text-[#8f9b82] min-h-4">{ms}</p></H>
    <H d={1050} className="flex flex-wrap justify-center items-center gap-3"><button onClick={()=>open('index')} className="liquid-glass rounded-full px-6 py-3 text-sm">View practice areas</button><button onClick={()=>go('approach')} className="bg-transparent border-0 text-sm muted hover:text-[#f2f0e9] px-3 py-3">About ANMIS</button></H></div>
   <H d={1120} className="absolute bottom-6 left-0 right-0 z-10 flex justify-center gap-3">
-   {[['Instagram page','insta','archive'],['Video channel','vid','archive'],['Open contact panel','mail','inquiry']].map(([l,i,k])=><button key={l} aria-label={l} onClick={()=>open(k)} className="liquid-glass rounded-full w-[42px] h-[42px] grid place-items-center"><Ic d={IC[i]}/></button>)}</H>
+   {[['Instagram page','insta','archive'],['Video channel','vid','archive'],['Call us','mail','call']].map(([l,i,k])=><button key={l} aria-label={l} onClick={()=>k==='call'?(location.href=TEL):open(k)} className="liquid-glass rounded-full w-[42px] h-[42px] grid place-items-center"><Ic d={IC[i]}/></button>)}</H>
  </section>
  <section id="approach" className="pt-24 md:pt-44 pb-16 px-6" style={{backgroundImage:'radial-gradient(ellipse 70% 42% at 50% 0%, rgba(143,155,130,0.12), transparent 62%)'}}><div className="max-w-[1200px] mx-auto">
   <Reveal y={24}><p className="eyebrow mb-6">About ANMIS / 01</p></Reveal>

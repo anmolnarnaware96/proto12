@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>ANMIS Legal Consultancy — Clear legal counsel.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&display=swap" rel="stylesheet">
@@ -7,9 +7,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.26.4/babel.min.js"></script>
 <style>
-:root{--bg:#080909;--ink:#f2f0e9;--muted:rgba(242,240,233,.62);--dim:rgba(242,240,233,.40);--olive:#8f9b82;--clay:#bf8d6f;--line:rgba(242,240,233,.14);--ease:cubic-bezier(.16,1,.3,1)}
+:root{--ink:#f2f0e9;--muted:rgba(242,240,233,.62);--dim:rgba(242,240,233,.40);--black:#080909;--olive:#8f9b82;--clay:#bf8d6f;--line:rgba(242,240,233,.14);--shell:1200px;--ease:cubic-bezier(.16,1,.3,1)}
 *,*::before,*::after{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:#f2f0e9;overflow-x:hidden;font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
+html{overflow-x:hidden;max-width:100%}main{overflow-x:clip;max-width:100vw}img,video{max-width:100%}h1,h2,h3,p{overflow-wrap:break-word}
+body{margin:0;background:#080909;color:#f2f0e9;overflow-x:hidden;font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
 body.menu-open{overflow:hidden}
 .font-display,.hero-h,.menu__link{font-family:Fraunces,serif}
 button,input,textarea{font:inherit;color:inherit}button{transition:transform .16s var(--ease);cursor:pointer}button:active{transform:scale(.97)}
@@ -18,20 +19,20 @@ button,input,textarea{font:inherit;color:inherit}button{transition:transform .16
 .liquid-glass::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.2px;pointer-events:none;background:linear-gradient(180deg,rgba(242,240,233,.55),rgba(242,240,233,.05) 30%,rgba(242,240,233,0) 70%,rgba(242,240,233,.35));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
 .film-fill,.hero-film--still,.hero-film--live{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transform:translateZ(0);backface-visibility:hidden}
 .hero-film--still{z-index:0}.hero-film--live{z-index:1}
-.hero-veil{position:absolute;left:0;right:0;bottom:0;height:22%;z-index:2;pointer-events:none;background:linear-gradient(to top,var(--bg),transparent)}
+.hero-veil{position:absolute;left:0;right:0;bottom:0;height:22%;z-index:2;pointer-events:none;background:linear-gradient(to top,#080909,transparent)}
 .nav .menu__cta{display:none}
-.menu{position:fixed;inset:0;z-index:60;background:#f2f0e9;color:#000;opacity:0;visibility:hidden;transform:translateY(-12px);pointer-events:none;transition:opacity .6s var(--ease),transform .6s var(--ease),visibility 0s .6s}
+.menu{position:fixed;inset:0;z-index:60;background:#070808;opacity:0;visibility:hidden;transform:translateY(-12px);pointer-events:none;transition:opacity .6s var(--ease),transform .6s var(--ease),visibility 0s .6s}
 .menu.is-open{opacity:1;visibility:visible;transform:none;pointer-events:auto;transition:opacity .6s var(--ease),transform .6s var(--ease)}
-.menu__row{overflow:hidden}.menu__link{display:block;color:#000;transform:translateY(115%);transition:transform .8s var(--ease);font-size:2.6rem;background:none;border:0;padding:.15em 0;text-align:left}
+.menu__row{overflow:hidden}.menu__link{display:block;transform:translateY(115%);transition:transform .8s var(--ease);font-size:2.6rem;background:none;border:0;padding:.15em 0;text-align:left}
 .menu.is-open .menu__link{transform:none}
-.menu .menu__cta{display:inline-flex;color:#000;background:rgba(0,0,0,.08);opacity:0;transition:opacity .6s .36s}.menu.is-open .menu__cta{opacity:1}
-.menu .menu__cta::before{background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.08))}
+.menu .menu__cta{display:inline-flex;opacity:0;transition:opacity .6s .36s}.menu.is-open .menu__cta{opacity:1}
 .hero-h{font-weight:500;letter-spacing:-.035em;line-height:1;font-size:clamp(3rem,6.4vw,6.8rem);text-shadow:0 2px 30px rgba(0,0,0,.55)}
 @media(max-width:640px){.hero-h{font-size:clamp(2.65rem,12vw,4rem)}}
 .wordmark{font-weight:600;letter-spacing:.08em;font-size:14px;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 @media(max-width:380px){.wordmark{font-size:11px}}
 .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
 .muted{color:var(--muted)}.clay{color:var(--clay)}
+.field{width:100%;background:transparent;border:1px solid var(--line);border-radius:14px;padding:.75rem 1rem}
 @keyframes hs{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 .hs{animation:hs .85s var(--ease) both}
 .rv{transition:opacity .8s var(--ease),transform .8s var(--ease)}
@@ -40,18 +41,16 @@ button,input,textarea{font:inherit;color:inherit}button{transition:transform .16
 </style></head><body><div id="root"></div>
 <script type="text/babel">
 const {useState,useEffect,useRef,useCallback}=React;
-// ▼ Replace with your real phone number (digits and + only in TEL; any format in PHONE)
-const PHONE='+91 00000 00000';
-const TEL='tel:+910000000000';
 const P_='https://www.pexels.com/download/video/';
+// Swap any of these for a local file (e.g. 'media/hero.mp4') if the Pexels link ever refuses to play.
 const MEDIA={hero:P_+'6101151/',film:P_+'4475743/',fiber:P_+'6854190/',atmos:P_+'5637923/',object:P_+'8061614/'};
 const useReduced=()=>{const[r,setR]=useState(matchMedia('(prefers-reduced-motion: reduce)').matches);useEffect(()=>{const m=matchMedia('(prefers-reduced-motion: reduce)');const f=()=>setR(m.matches);m.addEventListener('change',f);return()=>m.removeEventListener('change',f)},[]);return r};
 function Reveal({children,x=0,y=0,delay=0,className=''}){const ref=useRef(null);const[v,setV]=useState(false);const red=useReduced();
  useEffect(()=>{const o=new IntersectionObserver(([e])=>{if(e.isIntersecting){setV(true);o.disconnect()}},{rootMargin:'-100px'});o.observe(ref.current);return()=>o.disconnect()},[]);
- const on=v||red;return <div ref={ref} className={'rv '+className} style={{opacity:on?1:0,transform:on?'none':`translate(${x}px,${y}px)`,transitionDelay:delay+'s'}}>{children}</div>}
-const Logo=()=><svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true" className="shrink-0"><path d="M6 10.5C9.4 8.4 12.2 9.1 16 13.2C19.8 9.1 22.6 8.4 26 10.5" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round"/><path d="M7.5 18.2C10.6 16.4 13.1 16.8 16 20.4C18.9 16.8 21.4 16.4 24.5 18.2" stroke="currentColor" strokeOpacity=".72" strokeWidth="1.2" strokeLinecap="round"/><rect x="14.4" y="22.6" width="3.2" height="3.2" rx=".5" fill="#bf8d6f"/></svg>;
+ const on=v||red;return <div ref={ref} className={'rv '+className} style={{opacity:on?1:0,transform:on?'none':`translate(${innerWidth<768?0:x}px,${y}px)`,transitionDelay:delay+'s'}}>{children}</div>}
+const Logo=()=><svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true" className="shrink-0"><path d="M6 10.5C9.4 8.4 12.2 9.1 16 13.2C19.8 9.1 22.6 8.4 26 10.5" stroke="#f2f0e9" strokeWidth="1.35" strokeLinecap="round"/><path d="M7.5 18.2C10.6 16.4 13.1 16.8 16 20.4C18.9 16.8 21.4 16.4 24.5 18.2" stroke="rgba(242,240,233,.72)" strokeWidth="1.2" strokeLinecap="round"/><rect x="14.4" y="22.6" width="3.2" height="3.2" rx=".5" fill="#bf8d6f"/></svg>;
 const Ic=({d,s=17})=><svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={d}/></svg>;
-const IC={x:'M6 6l12 12M18 6L6 18',insta:'M7 3h10a4 4 0 014 4v10a4 4 0 01-4 4H7a4 4 0 01-4-4V7a4 4 0 014-4zM12 8a4 4 0 100 8 4 4 0 000-8zM17.5 6.5h.01',vid:'M3 7h12a2 2 0 012 2v6a2 2 0 01-2 2H3zM17 11l4-3v8l-4-3',phone:'M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z'};
+const IC={arrow:'M5 12h14M13 6l6 6-6 6',x:'M6 6l12 12M18 6L6 18',insta:'M7 3h10a4 4 0 014 4v10a4 4 0 01-4 4H7a4 4 0 01-4-4V7a4 4 0 014-4zM12 8a4 4 0 100 8 4 4 0 000-8zM17.5 6.5h.01',vid:'M3 7h12a2 2 0 012 2v6a2 2 0 01-2 2H3zM17 11l4-3v8l-4-3',mail:'M3 6h18v12H3zM3 7l9 7 9-7'};
 function FilmFrame({src,poster,hero}){const red=useReduced();const ref=useRef(null);const[st,setSt]=useState('loading');const[pf,setPf]=useState(!poster);
  useEffect(()=>{const v=ref.current;if(!v)return;if(red){v.pause();return}
   v.loop=true;v.muted=true;v.playsInline=true;v.autoplay=true;v.preload=hero?'auto':'metadata';
@@ -66,7 +65,7 @@ function FilmFrame({src,poster,hero}){const red=useReduced();const ref=useRef(nu
   {st==='error'&&!pf&&<p role="status" className="absolute bottom-3 left-4 z-[3] text-xs muted">Film unavailable — showing still study.</p>}
   {st==='error'&&pf&&<div className="absolute inset-0 z-[3] grid place-items-center text-sm muted">Media unavailable</div>}</div>}
 function Dialog({open,onClose,title,children}){const box=useRef(null);
- useEffect(()=>{if(!open)return;const prev=document.activeElement;const q=()=>[...box.current.querySelectorAll('button')];setTimeout(()=>q()[0]&&q()[0].focus(),30);
+ useEffect(()=>{if(!open)return;const prev=document.activeElement;const q=()=>[...box.current.querySelectorAll('button,input,textarea')];setTimeout(()=>q()[0]&&q()[0].focus(),30);
   const k=e=>{if(e.key==='Escape'){onClose();return}if(e.key!=='Tab')return;const f=q(),a=f[0],z=f[f.length-1];
    if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}};
   document.addEventListener('keydown',k);return()=>{document.removeEventListener('keydown',k);prev&&prev.focus&&prev.focus()}},[open,onClose]);
@@ -74,57 +73,65 @@ function Dialog({open,onClose,title,children}){const box=useRef(null);
  return <div className="fixed inset-0 z-[70] grid place-items-center p-4 bg-black/70 backdrop-blur-md" onMouseDown={e=>{if(e.target===e.currentTarget)onClose()}}>
   <div ref={box} role="dialog" aria-modal="true" aria-label={title} className="liquid-glass rounded-3xl w-full max-w-lg max-h-[88vh] overflow-auto p-6 md:p-8">
    <div className="flex items-start justify-between gap-4 mb-4"><h2 className="font-display text-2xl md:text-3xl leading-tight">{title}</h2><button onClick={onClose} aria-label="Close dialog" className="liquid-glass rounded-full w-10 h-10 grid place-items-center shrink-0"><Ic d={IC.x} s={16}/></button></div>{children}</div></div>}
+function Inquiry(){const[v,setV]=useState({n:'',e:'',m:''});const[msg,setMsg]=useState('');const[err,setErr]=useState(false);
+ const sub=ev=>{ev.preventDefault();const ok=v.n.trim()&&/^\S+@\S+\.\S+$/.test(v.e)&&v.m.trim();setErr(!ok);setMsg(ok?'Demo inquiry staged locally — no message was sent.':'Please complete every field with a valid email.')};
+ const f=(k,l,t='text')=><label className="block mb-3 text-sm muted">{l}{k==='m'?<textarea rows={4} className="field mt-1" value={v[k]} onChange={x=>setV({...v,[k]:x.target.value})}/>:<input type={t} className="field mt-1" value={v[k]} onChange={x=>setV({...v,[k]:x.target.value})}/>}</label>;
+ return <form onSubmit={sub} noValidate><p className="muted mb-4">This is a local demo form. Your note stays in this browser and is not sent. Please do not enter confidential details.</p>{f('n','Name')}{f('e','Email','email')}{f('m','A few lines about your matter')}
+ <button className="liquid-glass rounded-full px-6 py-3 text-sm font-medium">Save demo inquiry</button><p role="status" aria-live="polite" className={'mt-3 text-sm '+(err?'clay':'text-[#8f9b82]')}>{msg}</p></form>}
 const LINKS=[['About','approach'],['Principles','philosophy'],['Services','services'],['Contact','contact']];
 const INDEX=['Legal consultation','Corporate and commercial law','Contract drafting and review','Documentation','Dispute resolution and regulatory compliance','Legal representation'];
 const P=t=><p className="muted">{t}</p>;
-const DLG={index:['Practice areas / what we do',<ol className="list-decimal pl-5 space-y-2 muted">{INDEX.map(q=><li key={q}>{q}</li>)}</ol>],archive:['Our channels are coming soon.',P('Nothing external is connected in this demo.')],
- notes:['How we work / listen, advise, act',P('We understand the matter, advise on your options, then act through documentation, negotiation, or representation.')],
- mapping:['Consultation & compliance',P('We advise on legal questions, regulatory compliance, and corporate and commercial matters, with clear next steps. This is general information, not legal advice.')],
- editions:['Contracts & representation',P('We draft and review contracts, prepare documentation, support dispute resolution, and arrange representation through qualified legal professionals. This is general information, not legal advice.')]};
+const DLG={inquiry:['Tell us about your legal matter.',<Inquiry/>],index:['Practice areas / what we do',<ol className="list-decimal pl-5 space-y-2 muted">{INDEX.map(q=><li key={q}>{q}</li>)}</ol>],
+ journal:['Insights / note 01',P('Good legal advice starts with understanding the full picture. This demo page is where short, plain-language insights would appear.')],archive:['Our channels are coming soon.',P('Nothing external is connected in this demo.')],
+ notes:['How we work / listen, advise, act',P('We understand the matter, advise on your options, then act through documentation, negotiation, or representation. This demo has no booking connected.')],
+ mapping:['Consultation & compliance',P('Demo summary: we advise on legal questions, regulatory compliance, and corporate and commercial matters, with clear next steps. This is general information, not legal advice.')],
+ editions:['Contracts & representation',P('Demo summary: we draft and review contracts, prepare documentation, support dispute resolution, and arrange representation through qualified legal professionals. This is general information, not legal advice.')]};
 const CARDS=[{k:'mapping',v:'atmos',tag:'Advisory',t:'Consultation & compliance',d:'Legal consultation, regulatory compliance, and corporate and commercial advice to help you act with confidence.'},{k:'editions',v:'object',tag:'Documents & disputes',t:'Contracts & representation',d:'Contract drafting and review, documentation, dispute resolution, and representation through qualified legal professionals.'}];
 function App(){
- const red=useReduced();const[dlg,setDlg]=useState(null);const[menu,setMenu]=useState(false);const burger=useRef(null);
+ const red=useReduced();const[dlg,setDlg]=useState(null);const[menu,setMenu]=useState(false);const[mail,setMail]=useState('');const[ms,setMs]=useState('');const burger=useRef(null);
  const open=setDlg;const close=useCallback(()=>setDlg(null),[]);const closeMenu=useCallback(()=>{setMenu(false);burger.current&&burger.current.focus()},[]);
  useEffect(()=>{document.body.classList.toggle('menu-open',menu);return()=>document.body.classList.remove('menu-open')},[menu]);
  useEffect(()=>{if(!menu)return;const k=e=>e.key==='Escape'&&closeMenu();const r=()=>innerWidth>900&&closeMenu();addEventListener('keydown',k);addEventListener('resize',r);return()=>{removeEventListener('keydown',k);removeEventListener('resize',r)}},[menu,closeMenu]);
- const go=id=>{setMenu(false);if(id==='contact'){location.href=TEL;return}document.getElementById(id).scrollIntoView({behavior:red?'auto':'smooth'})};
+ const go=id=>{setMenu(false);if(id==='contact'){open('inquiry');return}document.getElementById(id).scrollIntoView({behavior:red?'auto':'smooth'})};
  const H=({d,children,className=''})=><div className={'hs '+className} style={{animationDelay:d+'ms'}}>{children}</div>;
+ const sendMail=e=>{e.preventDefault();setMs(/^\S+@\S+\.\S+$/.test(mail)?'Demo signup staged locally — nothing was subscribed or sent.':'Please enter a valid email address.')};
  const t=dlg&&DLG[dlg];
  return <main>
  <section id="top" className="relative flex flex-col min-h-screen min-h-[100svh] overflow-hidden">
   <FilmFrame hero src={MEDIA.hero}/><div className="hero-veil"/>
-  <header className="nav relative w-full max-w-[1200px] mx-auto px-6 pt-6" style={{zIndex:menu?65:20,color:menu?'#000':undefined}}>
-   <div className="liquid-glass rounded-full px-6 py-3 flex items-center justify-between gap-3">
+  <header className="nav relative w-full max-w-[1200px] mx-auto px-6 pt-6" style={{zIndex:menu?65:20}}>
+   <div className="liquid-glass rounded-full pl-4 pr-2 sm:px-6 py-2 sm:py-3 flex items-center justify-between gap-2 sm:gap-3">
     <div className="flex items-center gap-3 min-w-0"><H d={0}><Logo/></H><H d={70} className="min-w-0"><span className="wordmark block">ANMIS Legal</span></H></div>
     <nav aria-label="Primary" className="hidden min-[901px]:flex gap-8">{LINKS.map(([l,id],i)=><H key={id} d={140+i*70}><button onClick={()=>go(id)} className="text-xs uppercase tracking-[.12em] font-medium muted hover:text-[#f2f0e9] bg-transparent border-0">{l}</button></H>)}</nav>
-    <H d={420} className="flex items-center gap-4">
-     <a href={TEL} className="liquid-glass rounded-full px-5 py-2 text-xs font-medium hidden min-[641px]:inline-flex whitespace-nowrap">Book a consultation</a>
+    <H d={420} className="flex items-center gap-4 shrink-0">
+     <button onClick={()=>open('journal')} className="hidden min-[901px]:inline text-xs uppercase tracking-[.12em] muted hover:text-[#f2f0e9] bg-transparent border-0">Insights</button>
+     <button onClick={()=>open('inquiry')} className="liquid-glass rounded-full px-5 py-2 text-xs font-medium hidden min-[641px]:inline-flex whitespace-nowrap">Request a consultation</button>
      <button ref={burger} aria-label={menu?'Close menu':'Open menu'} aria-expanded={menu} aria-controls="menu" onClick={()=>menu?closeMenu():setMenu(true)} className="min-[901px]:hidden w-11 h-11 grid place-items-center bg-transparent border-0">
       {menu?<Ic d={IC.x} s={22}/>:<span className="flex flex-col items-end gap-[6px]"><span className="block h-px w-[18px] bg-[#f2f0e9]"/><span className="block h-px w-3 bg-[#f2f0e9]"/></span>}</button></H></div></header>
   <div id="menu" className={'menu flex flex-col justify-center px-8 '+(menu?'is-open':'')} aria-hidden={!menu} inert={menu?undefined:''}>
    {LINKS.map(([l,id],i)=><div className="menu__row" key={id}><button className="menu__link" style={{transitionDelay:menu?(.12+i*.06)+'s':'0s'}} tabIndex={menu?0:-1} onClick={()=>go(id)}>{l}</button></div>)}
-   <a href={TEL} className="menu__cta liquid-glass rounded-full px-6 py-3 mt-8 self-start" tabIndex={menu?0:-1}>Book a consultation</a></div>
-  <div className="hero-stage relative z-10 flex flex-1 flex-col items-center justify-center text-center px-6 py-10 pb-24 gap-5">
-   <H d={560}><span className="liquid-glass rounded-full px-4 py-2 inline-flex items-center gap-2 text-xs uppercase tracking-[.12em]"><span className="w-1.5 h-1.5 bg-[#bf8d6f]"/>Legal advisory · Individuals · Businesses</span></H>
+   <button className="menu__cta liquid-glass rounded-full px-6 py-3 mt-8 self-start" tabIndex={menu?0:-1} onClick={()=>{setMenu(false);open('inquiry')}}>Request a consultation</button></div>
+  <div className="hero-stage relative z-10 flex flex-1 flex-col items-center justify-center text-center w-full max-w-full px-5 sm:px-6 py-10 pb-24 gap-5">
+   <H d={560}><span className="liquid-glass rounded-3xl sm:rounded-full px-4 py-2 inline-flex items-center justify-center gap-2 text-[10px] sm:text-xs leading-snug uppercase tracking-[.1em] sm:tracking-[.12em] max-w-full text-center"><span className="w-1.5 h-1.5 bg-[#bf8d6f] shrink-0"/>Legal advisory · Individuals · Businesses</span></H>
    <H d={700}><h1 className="hero-h">Clear counsel for<br className="hidden min-[900px]:block"/> <em className="clay font-normal">complex matters.</em></h1></H>
    <H d={840}><p className="max-w-[620px] text-sm md:text-[17px] muted">ANMIS Legal Consultancy provides comprehensive, reliable, and client-centric legal solutions for individuals, businesses, and organisations.</p></H>
+   <H d={980} className="w-full max-w-xl"><form onSubmit={sendMail} noValidate className="liquid-glass rounded-full flex items-center pl-6 pr-2 py-2"><input aria-label="Email for legal updates" placeholder="Email for legal updates" value={mail} onChange={e=>setMail(e.target.value)} className="flex-1 min-w-0 bg-transparent outline-none text-sm"/><button aria-label="Submit email" className="w-10 h-10 rounded-full bg-white text-black grid place-items-center shrink-0"><Ic d={IC.arrow} s={16}/></button></form><p role="status" aria-live="polite" className="text-xs mt-2 text-[#8f9b82] min-h-4">{ms}</p></H>
    <H d={1050} className="flex flex-wrap justify-center items-center gap-3"><button onClick={()=>open('index')} className="liquid-glass rounded-full px-6 py-3 text-sm">View practice areas</button><button onClick={()=>go('approach')} className="bg-transparent border-0 text-sm muted hover:text-[#f2f0e9] px-3 py-3">About ANMIS</button></H></div>
   <H d={1120} className="absolute bottom-6 left-0 right-0 z-10 flex justify-center gap-3">
-   {[['Instagram page','insta','archive'],['Video channel','vid','archive']].map(([l,i,k])=><button key={l} aria-label={l} onClick={()=>open(k)} className="liquid-glass rounded-full w-[42px] h-[42px] grid place-items-center"><Ic d={IC[i]}/></button>)}
-   <a href={TEL} aria-label="Call us" className="liquid-glass rounded-full w-[42px] h-[42px] grid place-items-center"><Ic d={IC.phone}/></a></H>
+   {[['Instagram page','insta','archive'],['Video channel','vid','archive'],['Open contact panel','mail','inquiry']].map(([l,i,k])=><button key={l} aria-label={l} onClick={()=>open(k)} className="liquid-glass rounded-full w-[42px] h-[42px] grid place-items-center"><Ic d={IC[i]}/></button>)}</H>
  </section>
- <section id="approach" className="pt-32 md:pt-44 pb-16 px-6" style={{backgroundImage:'radial-gradient(ellipse 70% 42% at 50% 0%, rgba(143,155,130,0.12), transparent 62%)'}}><div className="max-w-[1200px] mx-auto">
+ <section id="approach" className="pt-24 md:pt-44 pb-16 px-6" style={{backgroundImage:'radial-gradient(ellipse 70% 42% at 50% 0%, rgba(143,155,130,0.12), transparent 62%)'}}><div className="max-w-[1200px] mx-auto">
   <Reveal y={24}><p className="eyebrow mb-6">About ANMIS / 01</p></Reveal>
   <Reveal y={24} delay={.1}><h2 className="font-display text-4xl md:text-7xl leading-[1.04] tracking-tight max-w-4xl">Legal guidance that is <em className="text-[#d9c3b0]">clear</em>, careful, and built around you.</h2></Reveal>
   <Reveal y={24} delay={.2}><p className="mt-8 max-w-[650px] muted">ANMIS Legal Consultancy is a professional legal advisory firm. We simplify complex legal matters so individuals, businesses, and organisations can make informed decisions while their rights and interests stay protected.</p></Reveal>
   <Reveal y={24} delay={.3}><div className="mt-12 border-t border-[color:var(--line)] pt-6"><p className="eyebrow mb-4">At a glance / illustrative</p><dl className="grid grid-cols-1 sm:grid-cols-3 gap-6">{[['06','practice areas'],['03','steps: listen, advise, act'],['01','point of contact']].map(([n,l])=><div key={l}><dt className="font-display text-4xl clay">{n}</dt><dd className="text-sm muted">{l}</dd></div>)}</dl></div></Reveal></div></section>
- <section id="films" className="pt-8 md:pt-12 pb-24 md:pb-36 px-6"><Reveal y={60} className="max-w-[1200px] mx-auto"><div className="relative aspect-video min-h-[300px] rounded-3xl overflow-hidden"><FilmFrame src={MEDIA.film}/>
+ <section id="films" className="pt-8 md:pt-12 pb-24 md:pb-36 px-6"><Reveal y={60} className="max-w-[1200px] mx-auto"><div className="relative aspect-[4/5] sm:aspect-video rounded-3xl overflow-hidden"><FilmFrame src={MEDIA.film}/>
   <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 to-transparent pointer-events-none z-[2]"/>
-  <div className="absolute z-[3] inset-x-3 bottom-3 md:inset-x-8 md:bottom-8 flex items-end justify-between gap-4">
-   <div className="liquid-glass rounded-2xl md:rounded-3xl max-w-[470px] p-4 md:p-8"><p className="eyebrow mb-2">Our approach / 02</p><h3 className="font-display text-xl md:text-3xl mb-2">Strategy before paperwork</h3><p className="text-xs md:text-sm muted">Every matter begins with listening. We map the issue, the risks, and the options, then advise on the path that best protects your interests.</p></div>
+  <div className="absolute z-[3] inset-x-3 bottom-3 md:inset-x-8 md:bottom-8 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3 sm:gap-4">
+   <div className="liquid-glass rounded-2xl md:rounded-3xl w-full sm:w-auto max-w-[470px] p-4 md:p-8"><p className="eyebrow mb-2">Our approach / 02</p><h3 className="font-display text-xl md:text-3xl mb-2">Strategy before paperwork</h3><p className="text-xs md:text-sm muted">Every matter begins with listening. We map the issue, the risks, and the options, then advise on the path that best protects your interests.</p></div>
    <button onClick={()=>open('notes')} className="liquid-glass rounded-full px-5 py-3 text-xs md:text-sm whitespace-nowrap transition-transform hover:scale-105 motion-reduce:hover:scale-100">Our process</button></div></div></Reveal></section>
  <section id="philosophy" className="py-28 md:py-40 px-6"><div className="max-w-[1200px] mx-auto">
-  <Reveal y={40}><h2 className="font-display text-5xl md:text-8xl tracking-tight mb-16">Integrity <em className="clay text-[.5em] align-middle mx-2">×</em> Clarity</h2></Reveal>
+  <Reveal y={40}><h2 className="font-display text-[2.6rem] sm:text-5xl md:text-8xl tracking-tight mb-10 md:mb-16">Integrity <em className="clay text-[.5em] align-middle mx-2">×</em> Clarity</h2></Reveal>
   <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
    <Reveal x={-40}><div className="relative aspect-[4/3] rounded-3xl overflow-hidden"><FilmFrame src={MEDIA.fiber}/></div></Reveal>
    <Reveal x={40}>{[['Confidential and transparent','Your matters are handled with discretion. We explain scope, options, and next steps plainly, so there are no surprises.'],['Strategic and informed','Qualified legal professionals pair practical, strategic guidance with careful analysis, helping you weigh risk and decide with confidence.']].map(([h,p],i)=><div key={h} className={'py-8 '+(i?'border-t border-[color:var(--line)]':'')}><h3 className="font-display text-2xl md:text-3xl mb-3 flex items-center gap-3"><span aria-hidden className="w-2 h-2 bg-[#bf8d6f] shrink-0"/>{h}</h3><p className="muted">{p}</p></div>)}</Reveal></div></div></section>
